@@ -3,7 +3,7 @@ import urllib.request
 import time
 import subprocess
 import os
-import websocket
+from websocket import WebSocket
 import threading
 import sys
 import base64
@@ -38,7 +38,7 @@ def check_comfyui(server_address,client_id):
     socket_connected = False
     while not socket_connected:
         try:
-            ws = websocket.WebSocket()
+            ws = WebSocket()
             ws.connect(
                 "ws://{}/ws?clientId={}".format(server_address, client_id)
             )
