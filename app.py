@@ -40,7 +40,7 @@ class InferlessPythonModel:
         
         # Load the saved workflow
         workflow = load_workflow(workflow_path)
-        prompt = prompt_update_workflow(workflow_filename, workflow, prompt)
+        prompt = prompt_update_workflow(workflow, prompt, negative_prompt)
         prompt_id = send_comfyui_request(self.ws, prompt, self.server_address, self.client_id)
         file_path = get_img_file_path(self.server_address, prompt_id)
         image_base64 = image_to_base64(self.directory_path+"/ComfyUI"+file_path)
