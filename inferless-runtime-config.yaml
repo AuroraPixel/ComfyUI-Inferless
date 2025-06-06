@@ -32,3 +32,4 @@ build:
     - "huggingface-hub==0.25.2"
     - "requests==2.31.0"
     - "numpy==1.24.3"
+    - "psutil==5.9.0"
