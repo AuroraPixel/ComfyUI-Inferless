@@ -11,7 +11,7 @@ class InferlessPythonModel:
         if not os.path.exists(self.directory_path+"/ComfyUI"):
             subprocess.run(["wget", "https://github.com/inferless/ComfyUI-Inferless-template/raw/main/build.sh"])
             subprocess.run(["bash", "build.sh"], check=True)
-          
+        
         self._data_dir = self.directory_path+"/workflows"
         self.server_address = "127.0.0.1:8188"
         self.client_id = str(uuid.uuid4())
@@ -40,7 +40,7 @@ class InferlessPythonModel:
         
         # Load the saved workflow
         workflow = load_workflow(workflow_path)
-        prompt = prompt_update_workflow(workflow, prompt, negative_prompt)
+        prompt = prompt_update_workflow(workflow_filename, workflow, prompt)
         prompt_id = send_comfyui_request(self.ws, prompt, self.server_address, self.client_id)
         file_path = get_img_file_path(self.server_address, prompt_id)
         image_base64 = image_to_base64(self.directory_path+"/ComfyUI"+file_path)
